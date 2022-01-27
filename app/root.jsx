@@ -59,10 +59,6 @@ export default function App() {
     data: { site },
   } = useQuerySubscription(datoQuerySubscription);
 
-  const previewEnabled =
-    datoQuerySubscription.enabled === undefined ||
-    datoQuerySubscription.enabled === true;
-
   return (
     <html lang="en">
       <head>
@@ -73,19 +69,6 @@ export default function App() {
         {renderMetaTags([...site.favicon])}
       </head>
       <body>
-        <div className="preview">
-          {previewEnabled ? (
-            <Form method="post" action="/preview/stop">
-              This is page is showing draft content. <button>Click here</button>{' '}
-              to exit preview mode.
-            </Form>
-          ) : (
-            <Form method="post" action="/preview/start">
-              This is page is showing published content.{' '}
-              <button>Click here</button> to enter preview mode!
-            </Form>
-          )}
-        </div>
         <Outlet />
         <ScrollRestoration />
         <Scripts />
